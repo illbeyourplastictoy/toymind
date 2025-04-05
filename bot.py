@@ -17,7 +17,7 @@ else:
 if not TG_TOKEN or not TG_CHAT_ID:
     print("⚠️ Нет ключей Telegram. Уведомления отключены.")
 else:
-    send_telegram("🤖 ToyMind запущен. Мониторю рынок...", TG_TOKEN, TG_CHAT_ID)
+    send_telegram("🤖 ToyMind V1.5 запущен. Мониторю рынок с TP/SL и логированием...", TG_TOKEN, TG_CHAT_ID)
 
 used_symbols = set()
 
@@ -35,21 +35,27 @@ while True:
 
             used_symbols.add(symbol)
 
-            msg = f"📊 Сигнал: {side} по {symbol}\nЦена: {price}\nОткрываю позицию на $100..."
+            msg = (
+                f"📊 Сигнал: {side} по {symbol}\n"
+                f"Цена: {price}\n"
+                f"Открываю позицию на $100 с TP +3% и SL -2%..."
+            )
             print(msg)
             if TG_TOKEN and TG_CHAT_ID:
                 send_telegram(msg, TG_TOKEN, TG_CHAT_ID)
 
             result = place_order(symbol=symbol, side=side, usd_amount=100)
 
-            if result:
-                print("✅ Ордер отправлен.")
+            if result and result.get("retCode") == 0:
+                confirm = f"✅ Сделка открыта: {symbol} {side} @ {price} (с TP/SL)"
+                print(confirm)
                 if TG_TOKEN and TG_CHAT_ID:
-                    send_telegram(f"✅ Ордер отправлен: {symbol} {side}", TG_TOKEN, TG_CHAT_ID)
+                    send_telegram(confirm, TG_TOKEN, TG_CHAT_ID)
             else:
-                print("❌ Ошибка при открытии сделки")
+                error = f"❌ Не удалось открыть сделку по {symbol}"
+                print(error)
                 if TG_TOKEN and TG_CHAT_ID:
-                    send_telegram(f"❌ Не удалось открыть сделку по {symbol}", TG_TOKEN, TG_CHAT_ID)
+                    send_telegram(error, TG_TOKEN, TG_CHAT_ID)
 
     except Exception as e:
         print(f"⚠️ Ошибка в основном цикле: {e}")
