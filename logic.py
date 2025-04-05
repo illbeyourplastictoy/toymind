@@ -1,6 +1,5 @@
 import requests
-
-# Заглушка: позже можно подключить реальный API Bybit
+import pandas as pd
 
 def get_trade_opportunities():
     url = "https://api.bybit.com/v5/market/tickers?category=linear"
@@ -11,20 +10,44 @@ def get_trade_opportunities():
 
         for item in data.get("result", {}).get("list", []):
             symbol = item.get("symbol")
-            last_price = float(item.get("lastPrice", 0))
-            volume = float(item.get("turnover24h", 0))
+            if not symbol.endswith("USDT"):
+                continue
 
-            # Фильтр: объём торгов больше 10 миллионов
-            if volume > 10_000_000:
-                result.append({
-                    "symbol": symbol,
-                    "price": last_price,
-                    "volume": volume
-                })
+            try:
+                klines_url = f"https://api.bybit.com/v5/market/kline?category=linear&symbol={symbol}&interval=1&limit=25"
+                klines_resp = requests.get(klines_url)
+                klines_data = klines_resp.json().get("result", {}).get("list", [])
+
+                if len(klines_data) < 21:
+                    continue
+
+                closes = [float(candle[4]) for candle in klines_data]  # close prices
+                df = pd.DataFrame({"close": closes})
+                df["EMA5"] = df["close"].ewm(span=5).mean()
+                df["EMA21"] = df["close"].ewm(span=21).mean()
+
+                last_close = df.iloc[-1]["close"]
+                ema5 = df.iloc[-1]["EMA5"]
+                ema21 = df.iloc[-1]["EMA21"]
+
+                side = None
+                if ema5 > ema21:
+                    side = "Buy"
+                elif ema5 < ema21:
+                    side = "Sell"
+
+                if side:
+                    result.append({
+                        "symbol": symbol,
+                        "price": last_close,
+                        "side": side
+                    })
+            except Exception as inner_e:
+                print(f"Ошибка по {symbol}: {inner_e}")
+                continue
 
         return result
 
     except Exception as e:
-        print(f"Ошибка при получении тикеров: {e}")
+        print(f"Ошибка при получении данных: {e}")
         return []
-
