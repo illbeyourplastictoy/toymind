@@ -1,1 +1,1 @@
-# requirements.txt — placeholder
+requests==2.31.0
