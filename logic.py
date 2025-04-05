@@ -4,9 +4,16 @@ import pandas as pd
 def get_trade_opportunities():
     url = "https://api.bybit.com/v5/market/tickers?category=linear"
     try:
-        response = requests.get(url)
-        data = response.json()
-        result = []
+       response = requests.get(url)
+if response.status_code != 200 or not response.text.strip():
+    print(f"❌ Пустой или неверный ответ от API: {response.status_code}")
+    return []
+try:
+    data = response.json()
+except Exception as e:
+    print(f"❌ Ошибка разбора JSON: {e}")
+    print("Ответ:", response.text)
+    return []
 
         for item in data.get("result", {}).get("list", []):
             symbol = item.get("symbol")
