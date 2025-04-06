@@ -1,10 +1,38 @@
 import requests
 import pandas as pd
+import time
+import os
+import hmac
+import hashlib
+
+API_KEY = os.getenv("API_KEY")
+API_SECRET = os.getenv("API_SECRET")
+
+def sign_params(params, secret):
+    sorted_params = sorted(params.items())
+    query_string = "&".join(f"{k}={v}" for k, v in sorted_params)
+    signature = hmac.new(
+        bytes(secret, "utf-8"),
+        bytes(query_string, "utf-8"),
+        hashlib.sha256
+    ).hexdigest()
+    return signature
 
 def get_trade_opportunities():
-    url = "https://api.bybit.com/v5/market/tickers?category=linear"
+    timestamp = str(int(time.time() * 1000))
+    params = {
+        "category": "linear",
+        "apiKey": API_KEY,
+        "timestamp": timestamp,
+    }
+    params["sign"] = sign_params(params, API_SECRET)
+
+    url = "https://api.bybit.com/v5/market/tickers"
+
     try:
-        response = requests.get(url)
+        response = requests.get(url, params=params)
+        print("📡 Ответ от Bybit:", response.status_code)
+
         if response.status_code != 200 or not response.text.strip():
             print(f"❌ Пустой или неверный ответ от API: {response.status_code}")
             return []
@@ -24,8 +52,14 @@ def get_trade_opportunities():
                 continue
 
             try:
-                klines_url = f"https://api.bybit.com/v5/market/kline?category=linear&symbol={symbol}&interval=1&limit=25"
-                klines_resp = requests.get(klines_url)
+                klines_url = f"https://api.bybit.com/v5/market/kline"
+                k_params = {
+                    "category": "linear",
+                    "symbol": symbol,
+                    "interval": "1",
+                    "limit": 25
+                }
+                klines_resp = requests.get(klines_url, params=k_params)
                 klines_data = klines_resp.json().get("result", {}).get("list", [])
 
                 print(f"🔍 Проверяю: {symbol}")
@@ -34,7 +68,7 @@ def get_trade_opportunities():
                     print("⏭ Недостаточно данных по свечам")
                     continue
 
-                closes = [float(candle[4]) for candle in klines_data]  # close prices
+                closes = [float(candle[4]) for candle in klines_data]
                 df = pd.DataFrame({"close": closes})
                 df["EMA5"] = df["close"].ewm(span=5).mean()
                 df["EMA21"] = df["close"].ewm(span=21).mean()
@@ -69,3 +103,4 @@ def get_trade_opportunities():
     except Exception as e:
         print(f"Ошибка при получении данных: {e}")
         return []
+
