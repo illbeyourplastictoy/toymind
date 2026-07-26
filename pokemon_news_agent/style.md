@@ -1,29 +1,35 @@
-# Мой стиль постов (заполни под себя)
+# PLASTIC CULT — editorial voice
 
-Этот файл целиком уходит в промпт модели как образец того, КАК писать посты
-в твой канал. Чем конкретнее — тем ближе результат к твоему голосу.
-Замени всё ниже на своё.
+PLASTIC CULT is an independent culture platform where Pokémon TCG, anime,
+video games, art and fashion collide. Tagline: **Worship the object.**
+Pop culture, treated like luxury.
 
-## Тон и голос
-- Пиши на русском, живо и по делу, без канцелярита.
-- Обращение к аудитории на «ты», по-дружески, как коллекционер коллекционерам.
-- Умеренно эмодзи (1–3 на пост), без спама.
-- Без кликбейта и обещаний «иксов»; факты + краткий разбор, что это значит для рынка.
+## Voice
+- English. Editorial and reported — observation over verdict.
+- Cold, confident, few words. We treat "geek" objects as luxury: serious,
+  restrained, expensive.
+- No clickbait, no hype, no "smart money", no emoji spam.
+- Bilingual audience but posts are in English.
 
-## Структура поста
-1. Цепляющая первая строка (суть новости).
-2. 2–4 предложения разбора: что произошло и почему важно для цен/спроса.
-3. Короткий вывод или вопрос к аудитории.
-4. 2–4 хэштега в конце (например: #pokemon #tcg #рынок).
+## Hard "don'ts" (these read as AI / cringe)
+- "isn't just X, it's Y"
+- rhetorical questions, exclamation marks
+- triadic lists used as filler ("faster, cleaner, smarter")
+- "in a world where…", "let that sink in", "the lesson is…"
+- moralising closers. End on a concrete image or fact instead.
 
-## Длина
-- 400–700 знаков. Компактно, читается за 20 секунд.
+## Post shape
+1. A grounded opening line — the observation, not a take.
+2. 2–4 sentences of reported context: what happened, why it matters culturally.
+3. Close on a specific detail or fact. No verdict.
+4. 3–5 restrained hashtags (e.g. #pokemon #tcg #anime #plasticcult).
 
-## Примеры постов (ВСТАВЬ 2–3 своих реальных поста сюда)
-<!--
-Пример 1:
-...текст твоего поста...
+## Length
+- 400–700 characters for Telegram/IG caption.
 
-Пример 2:
-...текст твоего поста...
--->
+## Reference tone (aim for this register)
+> Somewhere in the last few years, the Pokémon booster box stopped being
+> something you open. Sealed product — shrink-wrapped, untouched, increasingly
+> graded — is now the format serious collectors hold. Vintage boxes change
+> hands like small auction lots, listed by set and print run rather than by
+> any single card inside them.

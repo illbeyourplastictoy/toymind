@@ -45,7 +45,7 @@ def _photo_arg(image):
 async def process_news(context: ContextTypes.DEFAULT_TYPE, notify_empty=False):
     """Основной цикл: собрать новости → сгенерировать черновик → прислать на апрув."""
     owner = config.TG_OWNER_CHAT_ID
-    print("🔄 Проверка новостей рынка покемонов...")
+    print("🔄 PLASTIC CULT: сканирую источники...")
 
     items = news.fetch_items()
     seen = state.get_seen_ids()
@@ -73,8 +73,14 @@ async def process_news(context: ContextTypes.DEFAULT_TYPE, notify_empty=False):
             await context.bot.send_message(owner, "ℹ️ Значимых рыночных новостей не нашлось.")
         return
 
-    fallback_img = next((it["image"] for it in new_items if it.get("image")), None)
-    image = images.get_image(data.get("image_prompt", ""), fallback_img)
+    # Фото: по умолчанию реальное (из источника/статьи). Генерируем только
+    # концепт-обложку, когда модель явно просит type=generate.
+    img = data.get("image", {})
+    article_img = next((it["image"] for it in new_items if it.get("image")), None)
+    if img.get("type") == "generate" and img.get("gen_prompt"):
+        image = images.get_image(img["gen_prompt"], article_img)
+    else:
+        image = img.get("source_url") or article_img
 
     draft_id = uuid.uuid4().hex[:12]
     _drafts(context)[draft_id] = {
@@ -85,11 +91,14 @@ async def process_news(context: ContextTypes.DEFAULT_TYPE, notify_empty=False):
         "items": new_items,
     }
 
+    head = f"[{data.get('pillar', '').upper()}] {data.get('headline', '')}".strip()
+    credit = img.get("credit") or img.get("note") or "см. источник"
     preview = (
-        "🔔 Черновик поста для канала\n\n"
+        f"🔔 Черновик · {head}\n\n"
         f"📋 СВОДКА:\n{data.get('summary', '').strip()}\n\n"
         "— — — — —\n"
-        f"📝 ПОСТ:\n{data['post'].strip()}"
+        f"📝 POST (EN):\n{data['post'].strip()}\n\n"
+        f"🖼 Фото: {credit}"
     )
     await context.bot.send_message(owner, preview, reply_markup=_keyboard(draft_id))
     if image:
@@ -164,9 +173,9 @@ async def on_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "🃏 Агент новостей рынка покемонов запущен.\n"
+        "🖤 PLASTIC CULT — редакторский радар запущен.\n"
         f"Твой chat_id: {update.effective_chat.id}\n\n"
-        "Раз в {h} ч. я присылаю черновик поста на апрув.\n"
+        "Раз в {h} ч. присылаю черновик поста на апрув (все пиллары).\n"
         "Команды: /check — проверить прямо сейчас.".format(h=config.CHECK_INTERVAL_HOURS)
     )
 

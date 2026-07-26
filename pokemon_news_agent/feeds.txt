@@ -1,12 +1,18 @@
-# RSS-ленты новостей рынка покемонов. По одной ссылке на строку.
-# Строки с # игнорируются. Можешь добавлять/убирать свои источники.
+# PLASTIC CULT — RSS sources across pillars. One URL per line, # = comment.
 
-# PokeBeach — новости TCG, анонсы наборов
+# --- POKÉMON / TCG (market, sets, chase) ---
 https://www.pokebeach.com/feed
+https://news.google.com/rss/search?q=pokemon+tcg+market+OR+prices+OR+sealed+when:2d&hl=en-US&gl=US&ceid=US:en
 
-# Google News — запросы про рынок/цены TCG (за последние сутки)
-https://news.google.com/rss/search?q=pokemon+tcg+market+OR+prices+when:1d&hl=en-US&gl=US&ceid=US:en
-https://news.google.com/rss/search?q=pokemon+card+chase+OR+sealed+OR+investment+when:1d&hl=en-US&gl=US&ceid=US:en
+# --- ANIME ---
+https://www.animenewsnetwork.com/all/rss.xml
+https://news.google.com/rss/search?q=anime+culture+OR+art+OR+fashion+when:2d&hl=en-US&gl=US&ceid=US:en
 
-# Google News — русскоязычные новости по покемонам (за сутки)
-https://news.google.com/rss/search?q=%D0%BF%D0%BE%D0%BA%D0%B5%D0%BC%D0%BE%D0%BD+%D0%BA%D0%B0%D1%80%D1%82%D1%8B+when:1d&hl=ru&gl=RU&ceid=RU:ru
+# --- GAMES (art direction / culture, not patch notes) ---
+https://news.google.com/rss/search?q=video+game+art+direction+OR+design+OR+aesthetic+when:2d&hl=en-US&gl=US&ceid=US:en
+
+# --- ART ---
+https://news.google.com/rss/search?q=(illustration+OR+contemporary+art)+pop+culture+when:2d&hl=en-US&gl=US&ceid=US:en
+
+# --- FASHION x POP CULTURE / COLLECTIBLES ---
+https://news.google.com/rss/search?q=(pop+mart+OR+collectible+OR+figure+OR+anime)+fashion+collab+when:2d&hl=en-US&gl=US&ceid=US:en

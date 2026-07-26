@@ -10,7 +10,7 @@ import bot
 
 def main():
     application = bot.build_app()
-    print("🃏 Pokemon News Agent запущен. Мониторю рынок и жду апрува...")
+    print("🖤 PLASTIC CULT radar запущен. Сканирую источники и жду апрува...")
     application.run_polling()
 
 
