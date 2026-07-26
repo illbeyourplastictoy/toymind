@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PLASTIC CULT — pop culture, treated like luxury</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="PLASTIC CULT — an independent platform where Pokémon cards, anime, games, art and fashion collide. Pop culture, treated like luxury.">
+<style>
+  :root{
+    --concrete:#ECEBE7; --paper:#F4F3F0; --ink:#111113; --grey:#78796F;
+    --panel:#E1E0DB; --hair:rgba(17,17,19,0.14);
+    --bar:#0E0E10; --bar-fg:#F1F0EC;
+    --holo:conic-gradient(from 210deg,#a8e6d4,#bcd0ff,#e6c2ff,#ffd6c2,#d8f0a8,#a8e6d4);
+    --bg:var(--concrete); --fg:var(--ink);
+    --grotesk:"Helvetica Neue",Helvetica,Arial,"Arimo",sans-serif;
+    --mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --wrap:1180px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--concrete:#0E0E10;--paper:#131316;--ink:#F1F0EC;--grey:#8A8B82;--panel:#191A1E;--hair:rgba(241,240,236,0.16)}
+  }
+  :root[data-theme="light"]{--concrete:#ECEBE7;--paper:#F4F3F0;--ink:#111113;--grey:#78796F;--panel:#E1E0DB;--hair:rgba(17,17,19,0.14)}
+  :root[data-theme="dark"]{--concrete:#0E0E10;--paper:#131316;--ink:#F1F0EC;--grey:#8A8B82;--panel:#191A1E;--hair:rgba(241,240,236,0.16)}
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--grotesk);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+  .mono{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--grey)}
+
+  /* ---------- top bar ---------- */
+  header.top{position:sticky;top:0;z-index:20;background:var(--bar);color:var(--bar-fg)}
+  .top .row{display:flex;align-items:center;gap:20px;height:64px}
+  .top nav.main{display:flex;gap:22px;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase}
+  .top nav.main a{opacity:0.82} .top nav.main a:hover{opacity:1}
+  .brand{margin:0 auto;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;font-size:0.95rem;white-space:nowrap;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--holo)}
+  .top .util{display:flex;gap:16px;align-items:center;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em}
+  .top .util button{background:none;border:0;color:inherit;font:inherit;cursor:pointer;opacity:0.82;padding:0}
+  .top .util button:hover{opacity:1}
+  @media(max-width:820px){.top nav.main{display:none}.brand{margin-right:auto;margin-left:0}}
+
+  /* ---------- category strip ---------- */
+  .cats{border-bottom:1px solid var(--hair);background:var(--bg);position:sticky;top:64px;z-index:15}
+  .cats .row{display:flex;gap:6px;overflow-x:auto;padding:14px 0;scrollbar-width:none}
+  .cats .row::-webkit-scrollbar{display:none}
+  .cats a{font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;font-size:0.98rem;padding:4px 2px;white-space:nowrap;color:var(--grey);position:relative}
+  .cats a:hover{color:var(--fg)}
+  .cats a.active{color:var(--fg)}
+  .cats a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;background:var(--holo)}
+
+  section{padding:clamp(34px,5vw,60px) 0}
+  section+section{border-top:1px solid var(--hair)}
+  .eyebrow{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--grey)}
+
+  /* ---------- placeholder image tiles ---------- */
+  .ph{position:relative;background:var(--panel);overflow:hidden;border:1px solid var(--hair)}
+  .ph::before{content:attr(data-tag);position:absolute;left:10px;top:9px;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+  .ph::after{content:"";position:absolute;right:-24px;bottom:-24px;width:120px;height:120px;background:var(--holo);opacity:0.5;filter:blur(2px);transform:rotate(12deg)}
+  .ph.tall{aspect-ratio:3/4} .ph.wide{aspect-ratio:4/3} .ph.hero{aspect-ratio:16/11}
+
+  /* ---------- article card ---------- */
+  .card .cat{font-family:var(--mono);font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey);margin:12px 0 6px}
+  .card h3{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:-0.015em;line-height:1.02;font-size:1.12rem;text-wrap:balance}
+  .card:hover h3{opacity:0.62}
+  .card .by{margin-top:8px;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey)}
+  .card.big h3{font-size:clamp(1.6rem,3.2vw,2.4rem)}
+  .card.big .dek{margin-top:12px;color:var(--fg);max-width:52ch;font-size:1.02rem;line-height:1.45}
+
+  /* ---------- front grid ---------- */
+  .front{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:clamp(20px,3vw,42px);align-items:start}
+  .col{display:flex;flex-direction:column;gap:30px}
+  @media(max-width:920px){.front{grid-template-columns:1fr 1fr}.front .center{grid-column:1/-1;order:-1}}
+  @media(max-width:620px){.front{grid-template-columns:1fr}}
+
+  /* ---------- latest ---------- */
+  .latest-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px;gap:1em}
+  .latest-head h2{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;font-size:1.5rem}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,30px)}
+  @media(max-width:860px){.grid4{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.grid4{grid-template-columns:1fr}}
+
+  /* ---------- newsletter ---------- */
+  .join{background:var(--bar);color:var(--bar-fg)}
+  .join .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,60px);align-items:center;padding-top:60px;padding-bottom:60px}
+  @media(max-width:760px){.join .wrap{grid-template-columns:1fr}}
+  .join h2{font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;font-size:clamp(1.8rem,5vw,3rem);margin:0;line-height:0.95}
+  .join p{color:rgba(241,240,236,0.66);margin:14px 0 0;max-width:44ch}
+  .form{display:flex;gap:0;border:1px solid rgba(241,240,236,0.4)}
+  .form input{flex:1;background:transparent;border:0;color:var(--bar-fg);font:inherit;padding:16px}
+  .form input::placeholder{color:rgba(241,240,236,0.45)}
+  .form button{background:var(--bar-fg);color:var(--bar);border:0;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0 20px;cursor:pointer}
+  .form button:hover{background:var(--holo);color:#101010}
+  .join .note{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;color:rgba(241,240,236,0.5);margin-top:12px}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--bg);border-top:1px solid var(--hair)}
+  footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;padding:56px 0 30px}
+  @media(max-width:760px){footer .cols{grid-template-columns:1fr 1fr}}
+  footer h4{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--grey);margin:0 0 14px;font-weight:400}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:0.92rem}
+  footer li a:hover{opacity:0.6}
+  footer .fmast{font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.82;font-size:clamp(3rem,13vw,8rem);padding:6px 0 30px}
+  footer .legal{display:flex;justify-content:space-between;gap:1em;flex-wrap:wrap;border-top:1px solid var(--hair);padding:20px 0 40px}
+
+  :focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap row">
+    <nav class="main">
+      <a href="#">Read</a>
+      <a href="#">About</a>
+      <a href="#">Drops</a>
+    </nav>
+    <a href="#" class="brand"><span class="dot" aria-hidden="true"></span>Plastic&nbsp;Cult</a>
+    <div class="util">
+      <button id="search" aria-label="Search">Search</button>
+    </div>
+  </div>
+</header>
+
+<nav class="cats" aria-label="Sections">
+  <div class="wrap row">
+    <a href="#" class="active">All</a>
+    <a href="#">Pokémon</a>
+    <a href="#">Anime</a>
+    <a href="#">Games</a>
+    <a href="#">Art</a>
+    <a href="#">Fashion</a>
+  </div>
+</nav>
+
+<main>
+  <!-- FRONT GRID -->
+  <section>
+    <div class="wrap front">
+      <!-- left column -->
+      <div class="col">
+        <a class="card" href="#">
+          <div class="ph tall" data-tag="Pokémon"></div>
+          <div class="cat">Pokémon</div>
+          <h3>Sealed Booster Boxes Are the New Luxury Handbag</h3>
+          <div class="by">Plastic Cult — 26 Jul 2026</div>
+        </a>
+        <a class="card" href="#">
+          <div class="ph tall" data-tag="Fashion"></div>
+          <div class="cat">Fashion</div>
+          <h3>When Trading Cards Became Something You Wear</h3>
+          <div class="by">Plastic Cult — 24 Jul 2026</div>
+        </a>
+      </div>
+
+      <!-- center feature -->
+      <div class="col center">
+        <a class="card big" href="#">
+          <div class="ph hero" data-tag="Art · cover story"></div>
+          <div class="cat">Art</div>
+          <h3>Yoshitaka Amano: Gold, Ink and Melancholy</h3>
+          <p class="dek">How the Final Fantasy artist turned fantasy into high fashion — and why his language is everywhere again, from magazine covers to collectible cards.</p>
+          <div class="by">Plastic Cult — 25 Jul 2026</div>
+        </a>
+      </div>
+
+      <!-- right column -->
+      <div class="col">
+        <a class="card" href="#">
+          <div class="ph tall" data-tag="Anime"></div>
+          <div class="cat">Anime</div>
+          <h3>Silent Apocalypse: The Aesthetic of BLAME! 25 Years On</h3>
+          <div class="by">Plastic Cult — 23 Jul 2026</div>
+        </a>
+        <a class="card" href="#">
+          <div class="ph tall" data-tag="Games"></div>
+          <div class="cat">Games</div>
+          <h3>Interface as Art: Why Persona 5 Is Still the Benchmark</h3>
+          <div class="by">Plastic Cult — 22 Jul 2026</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST -->
+  <section>
+    <div class="wrap">
+      <div class="latest-head">
+        <h2>Latest</h2>
+        <a href="#" class="mono">All stories →</a>
+      </div>
+      <div class="grid4">
+        <a class="card" href="#">
+          <div class="ph wide" data-tag="Pokémon"></div>
+          <div class="cat">Pokémon</div>
+          <h3>Chase Cards of the Week: What's Up, What's Down</h3>
+          <div class="by">Plastic Cult — 26 Jul 2026</div>
+        </a>
+        <a class="card" href="#">
+          <div class="ph wide" data-tag="Culture"></div>
+          <div class="cat">Culture</div>
+          <h3>Geek Is the New Mainstream — So Everyone Went Niche</h3>
+          <div class="by">Plastic Cult — 21 Jul 2026</div>
+        </a>
+        <a class="card" href="#">
+          <div class="ph wide" data-tag="Games"></div>
+          <div class="cat">Games</div>
+          <h3>Ten Games With the Best Art Direction of the Decade</h3>
+          <div class="by">Plastic Cult — 20 Jul 2026</div>
+        </a>
+        <a class="card" href="#">
+          <div class="ph wide" data-tag="Anime"></div>
+          <div class="cat">Anime</div>
+          <h3>The Anime Fashion People Actually Wear</h3>
+          <div class="by">Plastic Cult — 19 Jul 2026</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- JOIN -->
+<section class="join">
+  <div class="wrap">
+    <div>
+      <h2>Join the cult</h2>
+      <p>Once a week — the sharpest of the card market, anime, games and fashion. No noise, just the signal.</p>
+    </div>
+    <div>
+      <form class="form" id="sub">
+        <input type="email" placeholder="your@email" aria-label="Email" required>
+        <button type="submit">Join</button>
+      </form>
+      <div class="note" id="subnote">Unsubscribe in one click</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Plastic Cult</h4>
+        <p style="max-width:36ch;color:var(--grey);font-size:0.92rem;margin:0">An independent platform treating pop culture like luxury: Pokémon, anime, games, art, fashion.</p>
+      </div>
+      <div>
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="#">Pokémon</a></li>
+          <li><a href="#">Anime</a></li>
+          <li><a href="#">Games</a></li>
+          <li><a href="#">Art</a></li>
+          <li><a href="#">Fashion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <ul>
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">Instagram — @plastic.cult</a></li>
+          <li><a href="#">TikTok — @plastic.cult</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hi@plasticcult.co">hi@plasticcult.co</a></li>
+          <li><a href="#">Work with us</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fmast">Plastic&nbsp;Cult</div>
+    <div class="legal">
+      <span class="mono">© 2026 Plastic Cult · plasticcult.co</span>
+      <span class="mono">Pop culture, treated like luxury</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.cats a').forEach(a=>{
+    a.addEventListener('click',e=>{e.preventDefault();
+      document.querySelectorAll('.cats a').forEach(x=>x.classList.remove('active'));
+      a.classList.add('active');
+    });
+  });
+  var sub=document.getElementById('sub');
+  if(sub){sub.addEventListener('submit',function(e){e.preventDefault();
+    document.getElementById('subnote').textContent="You're in the cult. Check your inbox.";
+    sub.reset();
+  });}
+</script>
+</body>
+</html>

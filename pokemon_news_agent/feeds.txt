@@ -1,0 +1,18 @@
+# PLASTIC CULT — RSS sources across pillars. One URL per line, # = comment.
+
+# --- POKÉMON / TCG (market, sets, chase) ---
+https://www.pokebeach.com/feed
+https://news.google.com/rss/search?q=pokemon+tcg+market+OR+prices+OR+sealed+when:2d&hl=en-US&gl=US&ceid=US:en
+
+# --- ANIME ---
+https://www.animenewsnetwork.com/all/rss.xml
+https://news.google.com/rss/search?q=anime+culture+OR+art+OR+fashion+when:2d&hl=en-US&gl=US&ceid=US:en
+
+# --- GAMES (art direction / culture, not patch notes) ---
+https://news.google.com/rss/search?q=video+game+art+direction+OR+design+OR+aesthetic+when:2d&hl=en-US&gl=US&ceid=US:en
+
+# --- ART ---
+https://news.google.com/rss/search?q=(illustration+OR+contemporary+art)+pop+culture+when:2d&hl=en-US&gl=US&ceid=US:en
+
+# --- FASHION x POP CULTURE / COLLECTIBLES ---
+https://news.google.com/rss/search?q=(pop+mart+OR+collectible+OR+figure+OR+anime)+fashion+collab+when:2d&hl=en-US&gl=US&ceid=US:en
