@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A Short History of Shine — PLASTIC CULT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How a printing novelty became pop culture's default signal of value — from the foil pack to the runway.">
+<style>
+  :root{
+    --concrete:#ECEBE7;--ink:#111113;--grey:#6f7067;--panel:#E1E0DB;--hair:rgba(17,17,19,0.14);
+    --bar:#0E0E10;--bar-fg:#F1F0EC;
+    --holo:conic-gradient(from 210deg,#a8e6d4,#bcd0ff,#e6c2ff,#ffd6c2,#d8f0a8,#a8e6d4);
+    --bg:var(--concrete);--fg:var(--ink);
+    --grotesk:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Bitstream Charter",Georgia,"Times New Roman",serif;
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{--concrete:#0E0E10;--ink:#F1F0EC;--grey:#8A8B82;--panel:#191A1E;--hair:rgba(241,240,236,0.16)}}
+  :root[data-theme="light"]{--concrete:#ECEBE7;--ink:#111113;--grey:#6f7067;--panel:#E1E0DB;--hair:rgba(17,17,19,0.14)}
+  :root[data-theme="dark"]{--concrete:#0E0E10;--ink:#F1F0EC;--grey:#8A8B82;--panel:#191A1E;--hair:rgba(241,240,236,0.16)}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--grotesk);-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 clamp(18px,5vw,32px)}
+  .mono{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+
+  header.top{position:sticky;top:0;z-index:10;background:var(--bar);color:var(--bar-fg)}
+  header.top .row{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px);height:60px;display:flex;align-items:center;justify-content:center;position:relative}
+  .brand{font-weight:800;letter-spacing:0.16em;text-transform:uppercase;font-size:0.9rem;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--holo)}
+  header.top .back{position:absolute;left:clamp(16px,4vw,40px);font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.8}
+
+  article{padding:clamp(36px,6vw,72px) 0 40px}
+  .eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:22px}
+  h1{font-weight:800;letter-spacing:-0.03em;line-height:0.98;font-size:clamp(2.6rem,7vw,4.4rem);text-transform:uppercase;text-wrap:balance}
+  .standfirst{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.6vw,1.5rem);line-height:1.4;color:var(--fg);margin-top:24px;max-width:34ch}
+  .byline{display:flex;gap:1.2em;margin-top:28px;padding-bottom:28px;border-bottom:1.5px solid var(--fg)}
+  .hero{margin:36px 0;aspect-ratio:16/10;background:var(--panel);border:1px solid var(--hair);position:relative;overflow:hidden}
+  .hero::before{content:"HERO IMAGE · holographic card, editorial";position:absolute;left:14px;top:12px;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey)}
+  .hero::after{content:"";position:absolute;right:-40px;bottom:-40px;width:200px;height:200px;background:var(--holo);opacity:0.5;filter:blur(3px);transform:rotate(12deg)}
+
+  .body{font-size:1.16rem;line-height:1.62;margin-top:8px}
+  .body p{margin:0 0 1.35em;max-width:64ch}
+  .body p strong{font-weight:800}
+  .drop::first-letter{font-family:var(--serif);font-weight:700;font-size:3.4em;float:left;line-height:0.82;padding:6px 12px 0 0}
+  blockquote{margin:1.8em 0;padding:0;border:0}
+  blockquote p{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3.4vw,2rem);line-height:1.25;letter-spacing:-0.01em;max-width:20ch}
+  .endmark{display:inline-block;width:12px;height:12px;background:var(--holo);border-radius:50%;vertical-align:baseline;margin-left:6px}
+
+  footer{border-top:1px solid var(--hair);margin-top:20px}
+  footer .wrap{display:flex;justify-content:space-between;gap:1em;flex-wrap:wrap;padding:28px 0 60px}
+  :focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="top"><div class="row">
+  <a class="back" href="index.html">← Read</a>
+  <a class="brand" href="index.html"><span class="dot" aria-hidden="true"></span>Plastic&nbsp;Cult</a>
+</div></header>
+
+<div class="wrap">
+  <article>
+    <span class="eyebrow">Art · Pokémon</span>
+    <h1>A Short History of Shine</h1>
+    <p class="standfirst">How a printing novelty became pop culture's default signal of value — from the foil pack to the runway.</p>
+    <div class="byline">
+      <span class="mono">By Plastic Cult</span>
+      <span class="mono">26 Jul 2026</span>
+      <span class="mono">4 min read</span>
+    </div>
+
+    <div class="hero" role="img" aria-label="Editorial photograph of a holographic card"></div>
+
+    <div class="body">
+      <p class="drop">The first holographic cards were a manufacturing flourish, not a promise. In the late 1990s, a thin metallised film pressed under the artwork of a trading card caught the light and threw back a smear of rainbow. It was a finish — a way to make one card in the pack feel different from the sixty around it. Nobody in the print shop was thinking about resale value. They were thinking about how it looked under fluorescent light on a shop shelf.</p>
+      <p>It looked like the future. That was enough.</p>
+
+      <p><strong>The accident becomes the point.</strong> Within a few years the word "holo" had stopped describing a texture and started describing a category. A card was either holo or it wasn't, and the distinction did quiet, permanent things to how people handled them. Foil cards were sleeved. They were kept upright. They travelled in binders with the reverence usually reserved for documents. The finish had trained a generation of ten-year-olds in the basic grammar of collecting — that condition is fragile, that scarcity is visible, that some objects are for playing and some are for keeping — before any of them could have named it.</p>
+
+      <blockquote><p>The light does the arguing for you.</p></blockquote>
+
+      <p><strong>Shine as shorthand.</strong> The trick with a holographic surface is that it performs value without explaining it. You do not need to read a price guide to understand that the rainbow card is the one that matters. This is a rare quality in an object. Most things that are expensive look expensive only to people who already know the codes — a watch movement, a fabric weight, a maker's mark. Foil skips the education. It announces itself to the initiated and the oblivious in exactly the same language.</p>
+
+      <p><strong>The finish leaves home.</strong> Once a signal is that legible, it does not stay put. The iridescent sheen that started on cardboard migrated outward through the 2010s and 2020s: onto sneaker uppers and phone cases, across album covers and cosmetics packaging, into the pleats of garments engineered to shift colour as the wearer moved. Fashion, which has always understood that surface is a message, took the fastest. A holographic trim now reads instantly as <em>limited</em>, <em>drop</em>, <em>not for everyone</em> — the same three ideas the trading card was quietly teaching in 1999, wearing different clothes.</p>
+
+      <p><strong>Now.</strong> Today the foil finish is everywhere and, in a sense, nowhere — so thoroughly absorbed into the visual language of "special edition" that we have stopped seeing it as a choice. It is the default costume of scarcity. When a brand wants you to understand, without a word, that a thing is worth wanting, it reaches for the shine.</p>
+
+      <p>Which returns us to the card, standing upright on the shelf, throwing back the light. It was never really about the picture on the front. It was about the surface — the promise, printed in rainbow, that this one is different. We have been chasing that promise across pop culture ever since. We just call it collecting now.<span class="endmark" aria-hidden="true"></span></p>
+    </div>
+  </article>
+</div>
+
+<footer><div class="wrap">
+  <span class="mono">Plastic Cult — Worship the object</span>
+  <span class="mono">plasticcult.co · @plastic.cult</span>
+</div></footer>
+</body>
+</html>
